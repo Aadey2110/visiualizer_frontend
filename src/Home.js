@@ -9,6 +9,6 @@ export default function Home() {
 
   return (<div className="Home">
     <h1>Hello From Home</h1>
-    <p>{changes}</p>
+    <pre id="json">{changes}</pre>
   </div>);
 }
