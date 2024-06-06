@@ -5,13 +5,13 @@ export default function Home() {
   const [changes, setChanges] = useState("");
 
   useState(() => {
-    axios.post('https://c761-203-110-85-250.ngrok-free.app/api/changes')
-              .then((response) => setChanges(response.data));
+    axios.post('http://localhost:3978/api/changes')
+              .then((response) => setChanges(JSON.stringify(response.data, null, 2)));
   }, [changes])
 
 
   return (<div className="Home">
-    <h1>Hello From Home</h1>
+    <h1 style={{textAlign: "center"}}>Hello From Home</h1>
     <pre id="json">{changes}</pre>
   </div>);
 }
