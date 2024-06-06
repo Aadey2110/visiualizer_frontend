@@ -1,15 +1,14 @@
 import * as msTeams from "@microsoft/teams-js";
 import { useState } from "react";
+import axios from "axios";
 export default function Home() {
   const [changes, setChanges] = useState("");
 
-  fetch('https://c761-203-110-85-250.ngrok-free.app/api/changes', {
-    method: "GET",
-    headers: new Headers({
-        "Content-Type": "application/json"
-    }) })
-            .then((response) => response.json())
-            .then(json => setChanges(JSON.stringify(json, null, 2)));
+  useState(() => {
+    axios.get('https://c761-203-110-85-250.ngrok-free.app/api/changes')
+              .then((response) => console.log(response));
+  }, [changes])
+
 
   return (<div className="Home">
     <h1>Hello From Home</h1>
