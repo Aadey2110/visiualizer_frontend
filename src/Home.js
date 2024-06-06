@@ -3,7 +3,11 @@ import { useState } from "react";
 export default function Home() {
   const [changes, setChanges] = useState("");
 
-  fetch('https://c761-203-110-85-250.ngrok-free.app/api/changes')
+  fetch('https://c761-203-110-85-250.ngrok-free.app/api/changes', {
+    method: "GET",
+    headers: new Headers({
+        "Content-Type": "application/json"
+    }) })
             .then((response) => response.json())
             .then(json => setChanges(JSON.stringify(json, null, 2)));
 
