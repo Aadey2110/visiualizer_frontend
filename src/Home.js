@@ -5,8 +5,8 @@ export default function Home() {
   const [changes, setChanges] = useState("");
 
   useState(() => {
-    axios.get('https://c761-203-110-85-250.ngrok-free.app/api/changes')
-              .then((response) => console.log(response));
+    axios.post('https://c761-203-110-85-250.ngrok-free.app/api/changes')
+              .then((response) => setChanges(response.data));
   }, [changes])
 
 
