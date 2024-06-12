@@ -5,3 +5,11 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
 }
+
+button {
+  background-color: rgb(255, 255, 255);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  color: black;
+}
