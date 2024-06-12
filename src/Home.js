@@ -6,9 +6,11 @@ export default function Home() {
   const [changes, setChanges] = useState({});
 
   useState(() => {
-    axios.post("http://localhost:3978/api/changes").then((response) => {
-      setChanges({ ...response.data });
-    });
+    axios
+      .post("https://teams-bot-app-service.onrender.com/api/changes")
+      .then((response) => {
+        setChanges({ ...response.data });
+      });
   }, [changes]);
 
   return (
