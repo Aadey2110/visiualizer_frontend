@@ -10,6 +10,7 @@ import { useState } from "react";
 function App() {
   const [intialized, setInitialized] = useState(false);
 
+  const dispatch = useDispatch();
   const pageUrl = useSelector((state) => state.route.value.url);
 
   msTeams.app.initialize().then(() => {
@@ -17,7 +18,6 @@ function App() {
       console.log("Initalized");
       console.log(JSON.stringify(context, null, 2));
       setInitialized(true);
-      const dispatch = useDispatch();
       dispatch(login({ userId: context.user.id }));
     });
   });
