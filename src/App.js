@@ -5,10 +5,11 @@ import Home from "./Home";
 import { Preferences } from "./components/Preference/preference";
 import { login } from "./store";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [intialized, setInitialized] = useState(false);
+  const [userId, setUserId] = useState("");
+  const reduxUserId = useSelector((state) => state.user.value.userId);
 
   const dispatch = useDispatch();
   const pageUrl = useSelector((state) => state.route.value.url);
@@ -17,16 +18,21 @@ function App() {
     msTeams.app.getContext().then((context) => {
       console.log("Initalized");
       console.log(JSON.stringify(context, null, 2));
-      setInitialized(true);
-      dispatch(login({ userId: context.user.id }));
+      setUserId(context.user.id);
     });
   });
+
+  useEffect(() => {
+    if (userId !== "") {
+      dispatch(login({ userId: userId }));
+    }
+  }, [userId]);
 
   return (
     <div className="App">
       <div className="route-display">
-        {intialized && pageUrl === "/" && <Home />}
-        {intialized && pageUrl === "/preferences" && <Preferences />}
+        {reduxUserId !== "" && pageUrl === "/" && <Home />}
+        {reduxUserId !== "" && pageUrl === "/preferences" && <Preferences />}
       </div>
     </div>
   );
