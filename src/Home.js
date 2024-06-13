@@ -24,9 +24,9 @@ export default function Home() {
         } else if (response.data.message === "login first") {
           dispatch(navigate({ url: "/error/login" }));
         } else if (response.data.message === "set user preference first") {
-          dispatch(login({ url: "/preferences" }));
+          dispatch(navigate({ url: "/preferences" }));
         } else {
-          dispatch(login({ url: "/error/404" }));
+          dispatch(navigate({ url: "/error/404" }));
         }
       });
   }, [changes]);
