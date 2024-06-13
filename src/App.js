@@ -17,8 +17,8 @@ function App() {
     msTeams.app.getContext().then((context) => {
       console.log("Initalized");
       console.log(JSON.stringify(context, null, 2));
-      dispatch(login({ userId: context.user.id }));
       setInitialized(true);
+      dispatch(login({ userId: context.user.id }));
     });
   });
 
