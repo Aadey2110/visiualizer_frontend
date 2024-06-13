@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const routeSlice = createSlice({
   name: "route",
-  initialState: { value: { url: "/preferences" } },
+  initialState: { value: { url: "/" } },
   reducers: {
     navigate: (state, action) => {
       state.value = { ...state.value, ...action.payload };

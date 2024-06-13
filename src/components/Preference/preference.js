@@ -78,7 +78,7 @@ function ShowSpaceSelect({ choices }) {
       <MultiSelect
         multi
         hideSelectAll={true}
-        maxDropdownHeight={"80vh"}
+        maxDropdownHeight={"55vh"}
         filterOutSelected={false}
         options={getOptions(choices)}
         noResultsMsg="No characters found"

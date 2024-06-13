@@ -1,11 +1,17 @@
+// Essentials
 import "./App.css";
+import { useState } from "react";
 import * as msTeams from "@microsoft/teams-js";
 
+//Components
 import Home from "./Home";
 import { Preferences } from "./components/Preference/preference";
+import { LoginError } from "./components/Error/login";
+import { Error404 } from "./components/Error/error";
+
+// Redux Tools
 import { login } from "./store";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 
 function App() {
   const [intialized, setInitialized] = useState(false);
@@ -27,6 +33,8 @@ function App() {
       <div className="route-display">
         {intialized && pageUrl === "/" && <Home />}
         {intialized && pageUrl === "/preferences" && <Preferences />}
+        {intialized && pageUrl === "/error/login" && <LoginError />}
+        {intialized && pageUrl === "/error/404" && <Error404 />}
       </div>
     </div>
   );
