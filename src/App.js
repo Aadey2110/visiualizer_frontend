@@ -11,13 +11,13 @@ function App() {
   const [intialized, setInitialized] = useState(false);
 
   const pageUrl = useSelector((state) => state.route.value.url);
-  const dispatch = useDispatch();
 
   msTeams.app.initialize().then(() => {
     msTeams.app.getContext().then((context) => {
       console.log("Initalized");
       console.log(JSON.stringify(context, null, 2));
       setInitialized(true);
+      const dispatch = useDispatch();
       dispatch(login({ userId: context.user.id }));
     });
   });
