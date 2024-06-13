@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { DisplayNode } from "./components/Node";
+import { DisplayNode } from "./components/Difference/Node";
 
 export default function Home() {
   const [changes, setChanges] = useState({});
@@ -15,7 +15,17 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <h1 style={{ textAlign: "center" }}>Detect GQL Change</h1>
+      <h1
+        style={{
+          fontSize: "35px",
+          fontWeight: "300",
+          textAlign: "center",
+          marginTop: "50px",
+          marginBottom: "30px",
+        }}
+      >
+        Detect GQL Change
+      </h1>
       <div className="main-diff">
         {changes?.paths &&
           Object.keys(changes.paths).map((node) => {

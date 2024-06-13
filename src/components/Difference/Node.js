@@ -1,6 +1,8 @@
 import { DisplayDiff } from "./Diff";
 import { DisplayPaths } from "./Path";
 
+// key -> node affected and values are list
+
 export function DisplayNode({ name, pathsTo, nodeChanges }) {
   return (
     <div className="node-head">

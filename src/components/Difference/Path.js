@@ -6,7 +6,7 @@ export function DisplayPaths({ paths }) {
     setDisplayLength((oldState) => Math.min(oldState + 10, paths.length));
   };
   const handleShowLessButton = () => {
-    setDisplayLength((oldState) => Math.max(6, oldState - 10));
+    setDisplayLength((oldState) => 6);
   };
   return (
     <div className="paths-head">
