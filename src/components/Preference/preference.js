@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MultiSelect } from "@sprinklrjs/spaceweb/select";
 import axios from "axios";
 import { navigate } from "../../store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // const options = {
 //   Blueish: [
@@ -35,6 +35,7 @@ function ShowSpaceSelect({ choices }) {
   const [emptyError, setEmptyError] = useState(false);
 
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.value.userId);
 
   const handleSaveButton = () => {
     if (value.length) {
@@ -42,7 +43,11 @@ function ShowSpaceSelect({ choices }) {
       axios
         .post(
           "https://teams-bot-app-service.onrender.com/api/preferences/save",
-          { choices: value }
+          {
+            environment: "lite.qa6",
+            choices: value,
+            userId: userId,
+          }
         )
         .then((response) => {
           if (response?.data?.success) {

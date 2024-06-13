@@ -3,31 +3,28 @@ import * as msTeams from "@microsoft/teams-js";
 
 import Home from "./Home";
 import { Preferences } from "./components/Preference/preference";
-import { store } from "./store";
-import { Provider, useSelector } from "react-redux";
+import { login } from "./store";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const pageUrl = useSelector((state) => state.route.value.url);
+
+  const dispatch = useDispatch();
+
   msTeams.app.initialize().then(() => {
     console.log("Initalized");
     msTeams.app.getContext().then((context) => {
       console.log(JSON.stringify(context, null, 2));
+      dispatch(login({ userId: context.user.id }));
     });
   });
+
   return (
     <div className="App">
-      <Provider store={store}>
-        <RouterHandler />
-      </Provider>
-    </div>
-  );
-}
-
-function RouterHandler() {
-  const pageUrl = useSelector((state) => state.route.value.url);
-  return (
-    <div className="route-display">
-      {pageUrl === "/" && <Home />}
-      {pageUrl === "/preferences" && <Preferences />}
+      <div className="route-display">
+        {pageUrl === "/" && <Home />}
+        {pageUrl === "/preferences" && <Preferences />}
+      </div>
     </div>
   );
 }

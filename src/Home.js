@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { DisplayNode } from "./components/Difference/Node";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const [changes, setChanges] = useState({});
-
+  const userId = useSelector((state) => state.user.value.userId);
   useState(() => {
     axios
-      .post("https://teams-bot-app-service.onrender.com/api/changes")
+      .post("https://teams-bot-app-service.onrender.com/api/changes", { userId })
       .then((response) => {
         setChanges({ ...response.data });
       });
