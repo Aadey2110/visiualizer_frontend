@@ -20,7 +20,8 @@ const userSlice = createSlice({
   },
 });
 
-export const { navigate, login } = routeSlice.actions;
+export const { navigate } = routeSlice.actions;
+export const { login } = userSlice.actions;
 
 export const store = configureStore({
   reducer: {
