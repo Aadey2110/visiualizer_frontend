@@ -9,6 +9,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const [changes, setChanges] = useState({});
+  const [display, setDisplay] = useState(false);
   const userId = useSelector((state) => state.user.value.userId);
   useState(() => {
     axios
@@ -16,7 +17,9 @@ export default function Home() {
         userId,
       })
       .then((response) => {
-        if (response.success === true) {
+        console.log(response.data);
+        if (response.data.success === true) {
+          setDisplay(true);
           setChanges({ ...response.data.changes });
         } else if (response.data.message === "login first") {
           dispatch(navigate({ url: "/error/login" }));
@@ -30,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <Navigation />
+      {display && <Navigation />}
       <div className="main-diff">
         {changes?.paths &&
           Object.keys(changes.paths).map((node) => {
@@ -64,6 +67,7 @@ function Navigation() {
       style={{
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
         margin: "20px 50px",
       }}
     >
@@ -87,7 +91,7 @@ function Navigation() {
               textUnderlineOffset: "3px",
               fontSize: "22px",
             }}
-            onClick={() => dispatch(login({ url: "/preferences" }))}
+            onClick={() => dispatch(navigate({ url: "/preferences" }))}
           >
             Set Preferences
           </a>
