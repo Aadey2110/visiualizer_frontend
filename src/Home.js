@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { DisplayNode } from "./components/Difference/Node";
 import { Navigation } from "./Navbar";
 
+import { Box } from "@sprinklrjs/spaceweb/box";
+
 export default function Home() {
   const dispatch = useDispatch(); // Get the dispatch function from Redux
 
@@ -22,10 +24,15 @@ export default function Home() {
   useState(() => {
     // Fetch changes data from the API when the component mounts
     axios
-      .post("https://teams-bot-app-service.onrender.com/api/changes", {
+      .post("http://localhost:3978/api/changes", {
         userId,
       })
       .then((response) => {
+        // NOTE: Dev-Changes
+        setDisplay(true);
+        setChanges({ ...response.data.changes });
+        // ------NOTE: Dev-Changes
+        return;
         console.log(response.data); // Log the response data for debugging
         if (response.data.success === true) {
           // If the response is successful, update the state
@@ -52,20 +59,13 @@ export default function Home() {
         {changes?.paths &&
           Object.keys(changes.paths).map((node) => {
             return (
-              <div
-                className="affeced-node-head"
-                style={{
-                  border: "2px solid black",
-                  padding: "20px 33px",
-                  margin: "40px 0px",
-                }}
-              >
+              <Box className="rounded-8 p-5 border mx-4 mb-10">
                 <DisplayNode
                   name={node}
                   pathsTo={changes.paths[node]}
                   nodeChanges={changes.changedValues}
                 />
-              </div>
+              </Box>
             );
           })}
       </div>

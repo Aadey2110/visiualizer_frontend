@@ -13,9 +13,7 @@ export function Preferences() {
     if (preferenceChoices.length === 0) {
       // Make a GET request to fetch preference choices from the server
       axios
-        .get(
-          "https://teams-bot-app-service.onrender.com/api/preferences/choices"
-        )
+        .get("http://localhost:3978/api/preferences/choices")
         .then((response) => {
           // If the response is successful, update the state with fetched choices
           if (response?.data?.success) {

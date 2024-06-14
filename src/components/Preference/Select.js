@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MultiSelect } from "@sprinklrjs/spaceweb/select";
 import { Box } from "@sprinklrjs/spaceweb/box";
+import { Button } from "@sprinklrjs/spaceweb/button";
 import axios from "axios";
 import { navigate } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,14 +40,11 @@ export function ShowSpaceSelect({ choices }) {
       console.log(value); // Log selected values for debugging
       // Make a POST request to save preferences
       axios
-        .post(
-          "https://teams-bot-app-service.onrender.com/api/preferences/save",
-          {
-            environment: "lite.qa6",
-            choices: value,
-            userId: userId,
-          }
-        )
+        .post("http://localhost:3978/api/preferences/save", {
+          environment: "lite.qa6",
+          choices: value,
+          userId: userId,
+        })
         .then((response) => {
           // Handle successful response
           if (response?.data?.success) {
@@ -105,19 +103,9 @@ export function ShowSpaceSelect({ choices }) {
         className="save-btn"
         style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}
       >
-        <button
-          style={{
-            padding: "13px 15px",
-            backgroundColor: "blue",
-            color: "white",
-            fontSize: "17px",
-            fontWeight: "250",
-            borderRadius: "6px",
-          }}
-          onClick={handleSaveButton}
-        >
+        <Button variant="primary" onClick={handleSaveButton}>
           Submit
-        </button>
+        </Button>
       </div>
     </div>
   );

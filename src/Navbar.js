@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux";
 import { navigate } from "./store";
 
+import { Typography } from "@sprinklrjs/spaceweb/typography";
+import { Button } from "@sprinklrjs/spaceweb/button";
+
 export function Navigation() {
   const dispatch = useDispatch();
   return (
@@ -13,30 +16,15 @@ export function Navigation() {
         margin: "20px 50px",
       }}
     >
-      <h1
-        className="hero-title"
-        style={{
-          fontSize: "35px",
-          fontWeight: "300",
-          textAlign: "center",
-          marginTop: "50px",
-          marginBottom: "30px",
-        }}
-      >
-        Detect GQL Change
-      </h1>
+      <Typography variant="h2">Detect GQL Change</Typography>
       <div className="navs">
         <div style={{ cursor: "pointer" }}>
-          <a
-            style={{
-              textDecoration: "underline",
-              textUnderlineOffset: "3px",
-              fontSize: "22px",
-            }}
+          <Button
+            variant="tertiary"
             onClick={() => dispatch(navigate({ url: "/preferences" }))}
           >
             Set Preferences
-          </a>
+          </Button>
         </div>
       </div>
     </div>

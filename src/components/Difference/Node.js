@@ -1,31 +1,26 @@
 import { DisplayDiff } from "./Diff";
 import { DisplayPaths } from "./Path";
 
+import { Typography } from "@sprinklrjs/spaceweb/typography";
+import { Box } from "@sprinklrjs/spaceweb/box";
+
 // key -> node affected and values are list
 
 export function DisplayNode({ name, pathsTo, nodeChanges }) {
   return (
     <div className="node-head">
-      <h3 style={{ fontSize: "27px", fontWeight: "400" }}>Query : {name}</h3>
+      <Typography weight={"regular"} variant="h3">
+        Query : {name}
+      </Typography>
       <div className="all-paths">
         {Object.keys(pathsTo).map((endNode) => {
           return (
-            <div
-              className="nodewise-change"
-              style={{
-                border: "1.3px solid black",
-                borderRadius: "30px",
-                padding: "33px",
-                margin: "40px 0px",
-              }}
-            >
-              <h4 style={{ fontSize: "25px", fontWeight: "300" }}>
+            <Box className="border rounded-8 p-4 mt-4">
+              <Typography variant="body-14">
                 Affected Fragment : {endNode}
-              </h4>
+              </Typography>
               <div>
-                <div style={{ fontSize: "25px", fontWeight: "300" }}>
-                  Possible Paths :
-                </div>
+                <Typography variant="body-14">Possible Paths :</Typography>
                 <div>
                   <DisplayPaths paths={pathsTo[endNode]} />
                 </div>
@@ -36,7 +31,7 @@ export function DisplayNode({ name, pathsTo, nodeChanges }) {
                   newText={nodeChanges[endNode].newValue}
                 />
               </div>
-            </div>
+            </Box>
           );
         })}
       </div>

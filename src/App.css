@@ -13,3 +13,7 @@ button {
   cursor: pointer;
   color: black;
 }
+
+.diff-code {
+  font-size: 12px;
+}
