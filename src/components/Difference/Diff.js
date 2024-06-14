@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { diffLines, formatLines } from "unidiff";
 import { parseDiff, Diff, Hunk } from "react-diff-view";
 
 import "react-diff-view/style/index.css";
-// import './styles.css';
 
 const EMPTY_HUNKS = [];
 

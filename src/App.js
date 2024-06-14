@@ -3,9 +3,9 @@ import "./App.css";
 import { useState } from "react";
 import * as msTeams from "@microsoft/teams-js";
 
-//Components
+// Components
 import Home from "./Home";
-import { Preferences } from "./components/Preference/preference";
+import { Preferences } from "./components/Preference/Preference";
 import { LoginError } from "./components/Error/login";
 import { Error404 } from "./components/Error/error";
 
@@ -14,23 +14,23 @@ import { login } from "./store";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const [intialized, setInitialized] = useState(false);
+  const [intialized, setInitialized] = useState(false); // State to track if the app is initialized
 
-  const pageUrl = useSelector((state) => state.route.value.url);
-  const dispatch = useDispatch();
+  const pageUrl = useSelector((state) => state.route.value.url); // Get the current page URL from Redux store
+  const dispatch = useDispatch(); // Get the dispatch function from Redux
 
+  // Initialize Microsoft Teams app and get the user context
   msTeams.app.initialize().then(() => {
     msTeams.app.getContext().then((context) => {
-      console.log("Initalized");
-      console.log(JSON.stringify(context, null, 2));
-      dispatch(login({ userId: context.user.id }));
-      setInitialized(true);
+      dispatch(login({ userId: context.user.id })); // Dispatch the login action with user ID
+      setInitialized(true); // Set the initialized state to true
     });
   });
 
   return (
     <div className="App">
       <div className="route-display">
+        {/* Conditionally render components based on initialization status and current page URL */}
         {intialized && pageUrl === "/" && <Home />}
         {intialized && pageUrl === "/preferences" && <Preferences />}
         {intialized && pageUrl === "/error/login" && <LoginError />}
