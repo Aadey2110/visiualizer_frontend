@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MultiSelect } from "@sprinklrjs/spaceweb/select";
+import { Box } from "@sprinklrjs/spaceweb/box";
 import axios from "axios";
 import { navigate } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,20 +78,22 @@ export function ShowSpaceSelect({ choices }) {
         Choose Queries and Mutations to get notifications for -
       </h2>
       {/* MultiSelect component for user to select preferences */}
-      <MultiSelect
-        multi
-        hideSelectAll={true}
-        maxDropdownHeight={"55vh"}
-        filterOutSelected={false}
-        options={getOptions(choices)} // Set options from transformed choices
-        noResultsMsg="No characters found"
-        onChange={(params) => {
-          setEmptyError(false); // Reset error state on change
-          setValue(params.value); // Update selected values
-        }}
-        value={value}
-        closeOnSelect={false}
-      />
+      <Box className="px-4 w-96">
+        <MultiSelect
+          multi
+          hideSelectAll={true}
+          maxDropdownHeight={"55vh"}
+          filterOutSelected={false}
+          options={getOptions(choices)} // Set options from transformed choices
+          noResultsMsg="No characters found"
+          onChange={(params) => {
+            setEmptyError(false); // Reset error state on change
+            setValue(params.value); // Update selected values
+          }}
+          value={value}
+          closeOnSelect={false}
+        />
+      </Box>
       {/* Display error message if no choice is selected */}
       {emptyError && (
         <div style={{ color: "red" }}>

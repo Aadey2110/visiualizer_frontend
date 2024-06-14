@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { navigate } from "./store";
 
 export function Navigation() {
   const dispatch = useDispatch();
